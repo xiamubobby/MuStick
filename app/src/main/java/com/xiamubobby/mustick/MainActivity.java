@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -89,6 +90,7 @@ public class MainActivity extends Activity {
     }
 
     public void titleRef(View v) {
-        txtv.setText(edtx.getText());
+        Log.v("getT", edtx.getText().toString());
+        mstc.setTitle(edtx.getText().toString());
     }
 }

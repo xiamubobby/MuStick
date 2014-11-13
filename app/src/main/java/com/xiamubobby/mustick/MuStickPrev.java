@@ -7,6 +7,7 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 
 /**
@@ -49,6 +50,13 @@ public class MuStickPrev extends View {
         Paint p = new Paint();
         if (b != null) {
             canvas.drawBitmap(b, null, new RectF(0, 0, getWidth(), getHeight()), p);
+        }
+        p.setARGB(128, 128, 128, 128);
+        p.setTextAlign(Paint.Align.LEFT);
+       p.setTextSize(20f);
+        if (t != null && t != "") {
+            Log.v("im", "here");
+            canvas.drawText(t, 0, 0, p);
         }
     }
 
