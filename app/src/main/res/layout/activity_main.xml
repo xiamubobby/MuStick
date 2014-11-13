@@ -1,0 +1,56 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:orientation="vertical" tools:context=".MainActivity">
+
+    <TextView android:text="@string/hello_world" android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/title"/>
+
+    <EditText
+        android:id="@+id/bg_color"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/bg_color_hint"
+        android:inputType="number" />
+
+    <Button
+        android:id="@+id/pic_sel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="picSelButClicked"/>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/title_inp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:hint="@string/bg_color_hint"
+            android:inputType="text"
+            android:layout_weight="4" />
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:onClick="titleRef"
+            android:layout_weight="1" />
+
+    </LinearLayout>
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/canvas"
+        android:adjustViewBounds="true"/>
+
+    <com.xiamubobby.mustick.MuStickPrev
+        android:layout_width="230dp"
+        android:layout_height="230dp"
+        android:id="@+id/mup"/>
+
+</LinearLayout>
