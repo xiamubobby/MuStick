@@ -17,6 +17,7 @@ public class MuStickPrev extends View {
 
     Bitmap b;
     String t;
+    final String defaultTitle = "uhg?";
     int bgc;
 
     public MuStickPrev(Context context) {
@@ -47,16 +48,70 @@ public class MuStickPrev extends View {
     @Override
     public void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        Paint p = new Paint();
+        Paint paint = new Paint();
+
+        //drawBack~
+        canvas.drawARGB(255, 0, 0, 0);
+
+        //drawPic!
         if (b != null) {
-            canvas.drawBitmap(b, null, new RectF(0, 0, getWidth(), getHeight()), p);
+            canvas.drawBitmap(b, null, new RectF(
+                    ((float) (canvas.getWidth()*0.1)),
+                    ((float) (canvas.getHeight()*0.1)),
+                    ((float) (canvas.getWidth()*0.9)),
+                    ((float) (b.getHeight() * (canvas.getWidth()*0.8) / b.getWidth() + canvas.getWidth()*0.1))),
+                    paint);
         }
-        p.setARGB(128, 128, 128, 128);
-        p.setTextAlign(Paint.Align.LEFT);
-       p.setTextSize(20f);
+
+        //drawFrames-_-
+        paint.setARGB(255,0,0,0);
+        paint.setStyle(Paint.Style.FILL_AND_STROKE);
+        canvas.drawRect(
+                0,
+                0,
+                ((float) (canvas.getWidth()*0.1)),
+                ((float) (canvas.getHeight())),
+                paint);
+        canvas.drawRect(
+                ((float) (canvas.getWidth()*0.9)),
+                0,
+                ((float) (canvas.getWidth())),
+                ((float) (canvas.getHeight())),
+                paint);
+        canvas.drawRect(
+                0,
+                0,
+                ((float) (canvas.getWidth())),
+                ((float) (canvas.getHeight()*0.1)),
+                paint);
+        canvas.drawRect(
+                0,
+                ((float) (canvas.getHeight()*0.7)),
+                ((float) (canvas.getWidth())),
+                ((float) (canvas.getHeight())),
+                paint);
+
+        //drawText :)
+        paint.setARGB(255, 255, 255, 255);
+        paint.setTextAlign(Paint.Align.CENTER);
+        Paint.FontMetrics fm = paint.getFontMetrics();
         if (t != null && t != "") {
-            Log.v("im", "here");
-            canvas.drawText(t, 0, 0, p);
+            float s = ((float) (canvas.getWidth() * 0.85 / t.length()));
+            paint.setTextSize((s<85)?s:85);
+            Log.v("font",paint.getTextSize()+"");
+            paint.getFontMetrics(fm);
+            canvas.drawText(t,
+                    canvas.getWidth()/2,
+                    ((float) (canvas.getHeight()*0.85 - fm.descent + (fm.descent-fm.ascent)/2)),
+                    paint);
+        }
+        else {
+            /*paint.setTextSize(120);
+            paint.getFontMetrics(fm);
+            canvas.drawText(defaultTitle,
+                    canvas.getWidth()/2,
+                    ((float) (canvas.getHeight()*0.85 - fm.descent + (fm.descent-fm.ascent)/2)),
+                    paint);*/
         }
     }
 

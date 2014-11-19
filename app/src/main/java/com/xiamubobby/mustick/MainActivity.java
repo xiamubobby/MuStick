@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -30,10 +32,18 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        imgv = (ImageView) findViewById(R.id.canvas);
-        txtv = (TextView) findViewById(R.id.title);
         edtx = (EditText) findViewById(R.id.title_inp);
         mstc = (MuStickPrev) findViewById(R.id.mup);
+        edtx.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {}
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {}
+            @Override
+            public void afterTextChanged(Editable editable) {
+                mstc.setTitle(edtx.getText().toString());
+            }
+        });
     }
 
 
@@ -90,7 +100,6 @@ public class MainActivity extends Activity {
     }
 
     public void titleRef(View v) {
-        Log.v("getT", edtx.getText().toString());
         mstc.setTitle(edtx.getText().toString());
     }
 }
