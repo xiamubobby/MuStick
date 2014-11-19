@@ -98,8 +98,4 @@ public class MainActivity extends Activity {
             super.onActivityResult(requestCode, resultCode, data);
         }
     }
-
-    public void titleRef(View v) {
-        mstc.setTitle(edtx.getText().toString());
-    }
 }

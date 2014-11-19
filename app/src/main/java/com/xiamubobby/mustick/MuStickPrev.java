@@ -8,6 +8,8 @@ import android.graphics.Rect;
 import android.graphics.RectF;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.view.GestureDetector;
+import android.view.MotionEvent;
 import android.view.View;
 
 /**
@@ -114,6 +116,19 @@ public class MuStickPrev extends View {
                     paint);*/
         }
     }
+
+    GestureDetector detector = new GestureDetector(
+            getContext(),
+            new GestureDetector.SimpleOnGestureListener() {
+                public void onLongPress(MotionEvent e) {
+                    Log.v("moed","e");
+                }
+            });
+    //detector.setIsLongpressEnabled(true);
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        return detector.onTouchEvent(event);
 
 
 }
