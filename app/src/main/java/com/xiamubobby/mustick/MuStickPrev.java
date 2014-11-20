@@ -4,10 +4,14 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.RectF;
+import android.graphics.drawable.BitmapDrawable;
+import android.net.Uri;
+import android.os.Environment;
 import android.os.Handler;
 import android.os.Vibrator;
 import android.util.AttributeSet;
@@ -17,6 +21,9 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -165,6 +172,27 @@ public class MuStickPrev extends View {
                     destroyDrawingCache();
                 }
             });
+            final Bitmap resultBitmap = Bitmap.createBitmap(getDrawingCache());
+            builder.setPositiveButton(R.string.result_export,
+                    new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            FileOutputStream fos = null;
+                            try {
+                                fos = new FileOutputStream(Environment.getExternalStorageDirectory().getAbsolutePath()+"/someGay.jpg");
+                            } catch (FileNotFoundException e) {
+                                e.printStackTrace();
+                            }
+                            resultBitmap.compress(Bitmap.CompressFormat.JPEG, 100, fos);
+                            File resultFile = new File(Environment.getExternalStorageDirectory().getAbsolutePath()+"/someGay.jpg");
+                            Uri resultUri = Uri.fromFile(resultFile);
+                            Intent itnt = new Intent();
+                            itnt.setAction(Intent.ACTION_SEND);
+                            itnt.putExtra(Intent.EXTRA_STREAM, resultUri);
+                            itnt.setType("image/jpeg");
+                            getContext().startActivity(itnt);
+                        }
+                    });
             AlertDialog dialog = builder.create();
             dialog.show();
             Vibrator vibrator = (Vibrator) getContext().getSystemService(Context.VIBRATOR_SERVICE);
