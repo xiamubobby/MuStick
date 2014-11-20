@@ -7,10 +7,10 @@ import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -28,6 +28,7 @@ public class MainActivity extends Activity {
     TextView txtv;
     EditText edtx;
     MuStickPrev mstc;
+    Button switchRowButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,9 +42,10 @@ public class MainActivity extends Activity {
             public void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {}
             @Override
             public void afterTextChanged(Editable editable) {
-                mstc.setTitle(edtx.getText().toString());
+                mstc.setText(edtx.getText().toString());
             }
         });
+        switchRowButton = (Button) findViewById(R.id.row_switch);
     }
 
 
@@ -73,6 +75,11 @@ public class MainActivity extends Activity {
         Intent bgImgIntent = new Intent(Intent.ACTION_GET_CONTENT);
         bgImgIntent.setType("image/*"); // intent type to filter application based on your requirement
         startActivityForResult(bgImgIntent, REQUEST_CODE);
+    }
+
+    public void switchPrevRow(View v) {
+        mstc.switchTextRow();
+        switchRowButton.setText(mstc.getTextRow()+"");
     }
 
     @Override
