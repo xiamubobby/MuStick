@@ -10,9 +10,11 @@ import android.support.v4.view.ViewPager;
 /**
  * Created by Administrator on 2014/11/24.
  */
-public class PagerMainActivity extends Activity {
+public class PosterActivity extends Activity {
     private ViewPager pager;
     private MyPagerAdapter adapter;
+
+    private Poster poster;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +25,7 @@ public class PagerMainActivity extends Activity {
         adapter = new MyPagerAdapter(getFragmentManager());
         pager.setAdapter(adapter);
 
+        poster = Poster.getInstance();
     }
 
     public class MyPagerAdapter extends FragmentPagerAdapter {
@@ -39,6 +42,11 @@ public class PagerMainActivity extends Activity {
         @Override
         public int getCount() {
             return 2;
+        }
+
+        @Override
+        public float getPageWidth(int i) {
+            return 0.8f;
         }
     }
 }

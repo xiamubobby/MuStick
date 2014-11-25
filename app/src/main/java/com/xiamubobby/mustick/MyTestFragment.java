@@ -19,6 +19,10 @@ public class MyTestFragment extends Fragment {
 
     private int position;
 
+    private static final int POSITION_CONFIG = 0;
+    private static final int POSITION_PREVIEW = 1;
+
+
     public static MyTestFragment newInstance(int pos) {
         MyTestFragment f = new MyTestFragment();
         Bundle b = new Bundle();
@@ -26,6 +30,8 @@ public class MyTestFragment extends Fragment {
         f.setArguments(b);
         return f;
     }
+
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -36,6 +42,19 @@ public class MyTestFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.test_fragment, null);
+        if (position == POSITION_CONFIG) {
+            return inflater.inflate(R.layout.poster_config, null);
+        }
+        else if (position == POSITION_PREVIEW) {
+            return inflater.inflate(R.layout.test_fragment, null);
+        }
+        else {
+            return inflater.inflate(R.layout.test_fragment, null);
+        }
+    }
+
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+
     }
 }
