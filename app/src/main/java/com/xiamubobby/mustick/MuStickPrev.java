@@ -9,14 +9,12 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.RectF;
-import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.Vibrator;
 import android.util.AttributeSet;
 import android.util.Log;
-import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
@@ -25,7 +23,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.util.Timer;
-import java.util.TimerTask;
 
 /**
  * Created by Administrator on 2014/11/13.
@@ -161,7 +158,7 @@ public class MuStickPrev extends View {
         public void run() {
             AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
             builder.setTitle("ahaha");
-            View dialoagView = ((Activity) getContext()).getLayoutInflater().inflate(R.layout.mustickprev_dialog, null);
+            View dialoagView = ((Activity) getContext()).getLayoutInflater().inflate(R.layout.poster_preview_dialog, null);
             ImageView result = (ImageView) dialoagView.findViewById(R.id.result);
             builder.setView(dialoagView);
             buildDrawingCache();
