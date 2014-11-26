@@ -200,8 +200,6 @@ public class PosterActivity extends Activity {
         }
     }
 
-
-
     private void updatePreview() {
         preview.invalidate();
     }
